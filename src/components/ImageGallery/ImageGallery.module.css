@@ -1,0 +1,11 @@
+.text {
+  font-size: 2em;
+  color: #ffffff;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+}

@@ -1,0 +1,19 @@
+.header {
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.input {
+  width: 200px;
+  border: none;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+.input:hover {
+  border-color: #646cff;
+}
