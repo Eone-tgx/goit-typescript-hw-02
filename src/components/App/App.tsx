@@ -9,19 +9,20 @@ import { ClipLoader } from "react-spinners";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
+import { Image } from "./App.types";
 
 Modal.setAppElement("#root");
 
 function App() {
-  const [query, setQuery] = useState("");
-  const [images, setImages] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(null);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [query, setQuery] = useState<string>("");
+  const [images, setImages] = useState<Image[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number | null>(null);
+  const [selectedImage, setSelectedImage] = useState<Image | null>(null);
 
-  const handleSearch = async (query) => {
+  const handleSearch = async (query: string): Promise<void> => {
     setImages([]);
     setQuery(query);
     setPage(1);
@@ -61,7 +62,7 @@ function App() {
     }
   };
 
-  const openModal = (image) => setSelectedImage(image);
+  const openModal = (image: Image): void => setSelectedImage(image);
   const closeModal = () => {
     setSelectedImage(null);
     document.body.classList.remove("ReactModal__Body--open");
@@ -79,9 +80,10 @@ function App() {
 
       {error && <ErrorMessage />}
 
-      {images.length > 0 && page < totalPages && !isLoading && (
-        <LoadMoreBtn onClick={loadMoreImages} />
-      )}
+      {images.length > 0 &&
+        totalPages !== null &&
+        page < totalPages &&
+        !isLoading && <LoadMoreBtn onClick={loadMoreImages} />}
 
       {selectedImage && (
         <ImageModal image={selectedImage} onClose={closeModal} />

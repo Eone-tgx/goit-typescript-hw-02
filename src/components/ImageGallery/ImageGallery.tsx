@@ -1,7 +1,14 @@
 import css from "./ImageGallery.module.css";
 import ImageCard from "../ImageCard/ImageCard";
+import { Image } from "../App/App.types";
+import { FC } from "react";
 
-const ImageGallery = ({ images, onImageClick }) => {
+interface ImageGalleryProps {
+  images: Image[];
+  onImageClick: (image: Image) => void;
+}
+
+const ImageGallery: FC<ImageGalleryProps> = ({ images, onImageClick }) => {
   if (!images.length) {
     return <p className={css.text}>Введіть текст для пошуку</p>;
   }

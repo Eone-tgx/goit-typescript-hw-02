@@ -1,6 +1,13 @@
+import { FC, MouseEventHandler } from "react";
+import { Image } from "../App/App.types";
 import css from "./ImageCard.module.css";
 
-const ImageCard = ({ image, onClick }) => {
+interface ImageCardProps {
+  image: Image;
+  onClick: (image: Image) => void;
+}
+
+const ImageCard: FC<ImageCardProps> = ({ image, onClick }) => {
   return (
     <div>
       <img
@@ -8,7 +15,7 @@ const ImageCard = ({ image, onClick }) => {
         src={image.urls.small}
         alt={image.alt_description || "Image"}
         loading="lazy"
-        onClick={onClick}
+        onClick={() => onClick(image)}
         style={{ cursor: "pointer" }}
       />
     </div>
